@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -56,7 +57,7 @@ class ProductApiTest extends TestCase
             [
                 [
                     'name' => '商品名',
-                    'category_id' => 1,
+                    'category_id' => null,
                     'price' => 1000,
                     'stock' => 100,
                 ]
@@ -65,7 +66,7 @@ class ProductApiTest extends TestCase
             [
                 [
                     'name' => '商品名',
-                    'category_id' => 2,
+                    'category_id' => null,
                     'price' => 1000,
                     'stock' => 100,
                 ]
@@ -80,6 +81,7 @@ class ProductApiTest extends TestCase
      */
     public function test_商品を新規作成できるか(array $data):void
     {
+        $data['category_id'] = Category::factory()->create()->id;
         $response = $this->actingAs($this->user)->postJson('/api/products', $data);
 
         // HTTPステータス
