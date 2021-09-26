@@ -165,6 +165,7 @@ return [
         'name'           => '商品名',
         'category_id'           => 'カテゴリー',
         'email'                 => 'メールアドレス',
+        'stock'                 => '在庫',
         'img'                   => '画像',
         'img_url'               => '画像URL',
         'list_price'              => '定価',
